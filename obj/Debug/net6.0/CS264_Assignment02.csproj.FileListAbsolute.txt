@@ -1,0 +1,15 @@
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.csproj.AssemblyReference.cache
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.AssemblyInfoInputs.cache
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.AssemblyInfo.cs
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.csproj.CoreCompileInputs.cache
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\bin\Debug\net6.0\CS264_Assignment02.exe
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\bin\Debug\net6.0\CS264_Assignment02.deps.json
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\bin\Debug\net6.0\CS264_Assignment02.runtimeconfig.json
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\bin\Debug\net6.0\CS264_Assignment02.dll
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\bin\Debug\net6.0\CS264_Assignment02.pdb
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.dll
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\refint\CS264_Assignment02.dll
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.pdb
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\CS264_Assignment02.genruntimeconfig.cache
+C:\Users\ismae\VSC_Projects\CS264_Assignment02\obj\Debug\net6.0\ref\CS264_Assignment02.dll

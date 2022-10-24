@@ -1,0 +1,245 @@
+CS264 Assignment 2
+20466014
+Use Default SVG Size [Yy/Nn]
+n
+Enter SVG Height And Width:
+[height] [width]
+1000 1000
+
+Commands       :
+Exit           : exit
+Help           : help
+List Shapes    : list (shows shape indexes)
+Export SVG     : export [optional_name.svg]
+Edit Shape*    : edit [shape index]
+Edit Style     : style [shape index]
+Delete Shape   : delete [shape index]
+Transform Shape: transform [shape index]
+Change Z-Index : move [shape index] [top|bottom|shape index]
+Group Shapes** : group [shape index] [shape index] [...]
+Ungroup Shapes : ungroup [group index]
+Syntax         : [shape] [variable1] [variable2] [variableN]
+Examples       : rect 10 10 5 5
+               : polyline 1,1 2,2 3,3
+               : path M150 0 L75 200 L225 200 Z
+Rectangle      : rect [X] [Y] [Height] [Width]
+Circle         : circle [Cx] [Cy] [Radius]
+Ellipse        : ellipse [Cx] [Cy] [Rx] [Ry]
+Line           : line [X1] [Y1] [X2] [Y2]
+Polyline       : polyline [X1,Y1] [X2,Y2] [X..,Y..] [XN,YN]
+Polygon        : polygon [X1,Y2] [X2,Y2] [X..,Y..] [XN,YN]
+Path           : path [Path Commands]
+*ONLY ENTER SHAPE VARIABLES WHEN EDITING
+**SHAPE INDEX ORDER DETERMINES GROUP ORDER
+**SHAPES CANNOT BE EDITED WHILST IN GROUPS
+
+Start Drawing!
+
+Enter Command:
+rect 1 2 3 4
+
+Enter Command:
+circle 1 2 3
+
+Enter Command:
+ellipse 1 2 3 4
+
+Enter Command:
+line 1 2 3 4
+
+Enter Command:
+polyline 1,1 2,2 3,3
+
+Enter Command:
+polygon 1,1 2,2 3,3
+
+Enter Command:
+path M150 0 L75 200 L225 200 Z
+
+Enter Command:
+lisr
+Invalid Command!
+
+Enter Command:
+list
+
+Index=0,Rectangle(X=1,Y=2,Width=3,Height=4,Style=,Transforms=)
+Index=1,Circle(Cx=1,Cy=2,Radius=3,Style=,Transforms=)
+Index=2,Ellipse(Cx=1,Cy=2,Rx=3,Ry=4,Style=,Transforms=)
+Index=3,Line(X1=1,Y1=2,X2=3,Y2=4,Style=stroke:black;,Transforms=)
+Index=4,Polyline(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=5,Polygon(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=6,Path(Path="M150 0 L75 200 L225 200 Z",Style=,Transforms=)
+
+Enter Command:
+group 2 4 6
+
+Enter Command:
+list
+
+Index=0,Rectangle(X=1,Y=2,Width=3,Height=4,Style=,Transforms=)
+Index=1,Circle(Cx=1,Cy=2,Radius=3,Style=,Transforms=)
+Index=2,Line(X1=1,Y1=2,X2=3,Y2=4,Style=stroke:black;,Transforms=)
+Index=3,Polygon(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=4,Group(Styles= Transforms=
+        0,Ellipse(Cx=1,Cy=2,Rx=3,Ry=4,Style=,Transforms=)
+        1,Polyline(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+        2,Path(Path="M150 0 L75 200 L225 200 Z",Style=,Transforms=)
+)
+
+Enter Command:
+move 4 0
+
+Enter Command:
+list
+
+Index=0,Group(Styles= Transforms=
+        0,Ellipse(Cx=1,Cy=2,Rx=3,Ry=4,Style=,Transforms=)
+        1,Polyline(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+        2,Path(Path="M150 0 L75 200 L225 200 Z",Style=,Transforms=)
+)
+Index=1,Circle(Cx=1,Cy=2,Radius=3,Style=,Transforms=)
+Index=2,Line(X1=1,Y1=2,X2=3,Y2=4,Style=stroke:black;,Transforms=)
+Index=3,Polygon(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=4,Rectangle(X=1,Y=2,Width=3,Height=4,Style=,Transforms=)
+
+Enter Command:
+delete 1
+Shape deleted!
+
+Enter Command:
+list
+
+Index=0,Group(Styles= Transforms=
+        0,Ellipse(Cx=1,Cy=2,Rx=3,Ry=4,Style=,Transforms=)
+        1,Polyline(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+        2,Path(Path="M150 0 L75 200 L225 200 Z",Style=,Transforms=)
+)
+Index=1,Line(X1=1,Y1=2,X2=3,Y2=4,Style=stroke:black;,Transforms=)
+Index=2,Polygon(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=3,Rectangle(X=1,Y=2,Width=3,Height=4,Style=,Transforms=)
+
+Enter Command:
+ungroup 0
+
+Enter Command:
+list
+
+Index=0,Line(X1=1,Y1=2,X2=3,Y2=4,Style=stroke:black;,Transforms=)
+Index=1,Polygon(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=2,Rectangle(X=1,Y=2,Width=3,Height=4,Style=,Transforms=)
+Index=3,Ellipse(Cx=1,Cy=2,Rx=3,Ry=4,Style=,Transforms=)
+Index=4,Polyline(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=5,Path(Path="M150 0 L75 200 L225 200 Z",Style=,Transforms=)
+
+Enter Command:
+edit 0   
+Editing: Line(X1=1,Y1=2,X2=3,Y2=4,Style=stroke:black;,Transforms=)
+Enter New Values:
+5 6 7 8
+
+New Values: Line(X1=5,Y1=6,X2=7,Y2=8,Style=stroke:black;,Transforms=)
+
+Enter Command:
+style 0
+
+Editing Style of Line(X1=5,Y1=6,X2=7,Y2=8,Style=stroke:black;,Transforms=)
+
+Current Styles:
+fill:;
+stroke:black;
+stroke-width:;
+
+Edit Commands   :
+Exit Editing    : exit
+Help            : help
+Add Property    : [property]
+Remove Property : remove [property]
+Edit Property   : [property] [value]
+
+Enter Edit Command:
+fill red
+
+fill:red;
+stroke:black;
+stroke-width:;
+
+Enter Edit Command:
+stroke-width 1000
+
+fill:red;
+stroke:black;
+stroke-width:1000;
+
+Enter Edit Command:
+new-style
+
+fill:red;
+stroke:black;
+stroke-width:1000;
+new-style:;
+
+Enter Edit Command:
+new-style example style
+
+fill:red;
+stroke:black;
+stroke-width:1000;
+new-style:example style;
+
+Enter Edit Command:
+exit
+
+Exiting Style Editing
+
+Enter Command:
+transform 0
+
+Editing Transforms of Line(X1=5,Y1=6,X2=7,Y2=8,Style=fill:red;stroke:black;stroke-width:1000;new-style:example style;,Transforms=)
+
+Current Translations:
+matrix()
+rotate()
+translate()
+scale()
+skewX()
+skewY()
+
+Edit Commands  :
+Exit Editing   : exit
+Help           : help
+Edit Transform : [transform] [value]
+
+Enter Edit Command:
+matrix example
+
+matrix(example)
+rotate()
+translate()
+scale()
+skewX()
+skewY()
+
+Enter Edit Command:
+exit
+
+Exiting Style Editing
+
+Enter Command:
+list
+
+Index=0,Line(X1=5,Y1=6,X2=7,Y2=8,Style=fill:red;stroke:black;stroke-width:1000;new-style:example style;,Transforms=matrix(example))
+Index=1,Polygon(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=2,Rectangle(X=1,Y=2,Width=3,Height=4,Style=,Transforms=)
+Index=3,Ellipse(Cx=1,Cy=2,Rx=3,Ry=4,Style=,Transforms=)
+Index=4,Polyline(Points=(1,1),(2,2),(3,3),Style=,Transforms=)
+Index=5,Path(Path="M150 0 L75 200 L225 200 Z",Style=,Transforms=)
+
+Enter Command:
+export example.svg
+Canvas exported!
+
+Enter Command:
+exit
+
+Goodbye!

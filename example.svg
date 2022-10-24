@@ -1,0 +1,8 @@
+<svg height="1000" width="1000">
+<line x1="5" y1="6" x2="7" y2="8" style="fill:red;stroke:black;stroke-width:1000;new-style:example style;" transform="matrix(example)"/>
+<polygon points="1,1 2,2 3,3" style="" transform=""/>
+<rect x="1" y="2" width="3" height="4" style="" transform=""/>
+<ellipse cx="1" cy="2" rx="3" ry="4" style="" transform=""/>
+<polyline points="1,1 2,2 3,3" style="" transform=""/>
+<path d="M150 0 L75 200 L225 200 Z" style="" transform=""/>
+</svg>
