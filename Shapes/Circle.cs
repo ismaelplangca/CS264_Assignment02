@@ -22,8 +22,8 @@ public class Circle : Shape
         return "Circle(Cx=" + Cx
             + ",Cy=" + Cy
             + ",Radius=" + Radius
-            + ",Style=" + style.ToString()
-            + ",Transforms=" + transforms.ToString()
+            + ",Style=" + style
+            + ",Transforms=" + transforms
             + ")";
     }
     public override string ToSvgString()

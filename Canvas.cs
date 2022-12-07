@@ -75,14 +75,12 @@ public class Canvas
     }
     public string Contents()
     {
-        if(list.Count == 0)
-            return "No Shapes Yet!";
-            
-        var str = new StringBuilder();
-        for(int i = 0; i < list.Count; i++)
-            str.Append("Index=").Append(i).Append(",").Append(list[i]).Append("\n");
-        str.Length--;
-        return str.ToString();
+        return list.Count == 0
+        ? "No Shapes Yet!"
+        : String.Join(
+            Environment.NewLine,
+            list.Select((Shape s, int i) => "Index=" + i + "," + s)
+        );
     }
     public string ToSvgString()
     {

@@ -18,8 +18,8 @@ public class Path : Shape
     {
         var sb = new StringBuilder();
         sb.Append("Path(Path=\"" + path + "\"")
-        .Append(",Style=" + style.ToString() )
-        .Append(",Transforms=" + transforms.ToString()  + ")");
+        .Append(",Style=" + style)
+        .Append(",Transforms=" + transforms + ")");
         return sb.ToString();
     }
     public override string ToSvgString()
