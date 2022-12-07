@@ -5,6 +5,7 @@ public sealed class CanvasRunner
     public static void run()
     {
         bool run = true;
+        var sf = new ShapeFactory();
         Console.WriteLine("CS264 Assignment 2\n20466014");
         Console.WriteLine("Use Default SVG Size [Yy/Nn]");
         while(canvas == null)
@@ -92,26 +93,13 @@ public sealed class CanvasRunner
                         break;
                     case "ungroup" : canvas.UngroupShapes(int.Parse(command[1]) );
                         break;
-                    case "rect" : canvas.AddShape(new Rectangle(command[1],command[2],command[3],command[4]) );
-                        break;
-                    case "circle" : canvas.AddShape(new Circle(command[1],command[2],command[3]) );
-                        break;
-                    case "ellipse" : canvas.AddShape(new Ellipse(command[1],command[2],command[3],command[4]) );
-                        break;
-                    case "line" : canvas.AddShape(new Line(command[1],command[2],command[3],command[4]) );
-                        break;
-                    case "polyline" : canvas.AddShape(new Polyline(command) );
-                        break;
-                    case "polygon" : canvas.AddShape(new Polygon(command) );
-                        break;
-                    case "path" : canvas.AddShape(new Path(command.Skip(1).Aggregate((x,y) => x + " " + y) ) );
-                        break;
-                    case "text" : 
-                        canvas.AddShape(
-                            new Text(command[1], command[2],
-                                command.Skip(3).Aggregate((x,y) => x + " " + y)
-                            )
-                        );
+                    case "rect" :
+                    case "circle" :
+                    case "ellipse" :
+                    case "line" :
+                    case "polyline" :
+                    case "polygon" :
+                    case "path" : canvas.AddShape(sf.CreateShape(command) );
                         break;
                     default : Console.WriteLine("Invalid Command!");
                         break;
