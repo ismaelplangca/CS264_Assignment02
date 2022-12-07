@@ -1,0 +1,9 @@
+@startuml
+class Line {
+    + Line(X1:string, Y1:string, X2:string, Y2:string)
+    + <<override>> Edit(input:string) : void
+    + <<override>> ToString() : string
+    + <<override>> ToSvgString() : string
+}
+Shape <|-- Line
+@enduml

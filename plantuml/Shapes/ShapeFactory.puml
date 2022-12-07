@@ -1,0 +1,6 @@
+@startuml
+class ShapeFactory {
+    + ShapeFactory()
+    + CreateShape(inp:string[]) : Shape
+}
+@enduml

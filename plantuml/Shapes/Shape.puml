@@ -1,0 +1,9 @@
+@startuml
+abstract class Shape {
+    + Shape()
+    + {abstract} Edit(input:string) : void
+    + {abstract} ToSvgString() : string
+}
+Shape --> "style" Style
+Shape --> "transforms" Translate
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+!include .\\Canvas.puml
+!include .\\CanvasRunner.puml
+!include .\\Program.puml
+!include .\\Shapes\Circle.puml
+!include .\\Shapes\Ellipse.puml
+!include .\\Shapes\Group.puml
+!include .\\Shapes\Line.puml
+!include .\\Shapes\Path.puml
+!include .\\Shapes\Point.puml
+!include .\\Shapes\Polygon.puml
+!include .\\Shapes\Polyline.puml
+!include .\\Shapes\Rectangle.puml
+!include .\\Shapes\Shape.puml
+!include .\\Shapes\ShapeFactory.puml
+!include .\\Shapes\Style.puml
+!include .\\Shapes\Translate.puml
+!include .\\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.puml
+!include .\\obj\Debug\net6.0\CS264_Assignment02.AssemblyInfo.puml
+!include .\\obj\Debug\net6.0\CS264_Assignment02.GlobalUsings.g.puml
+@enduml

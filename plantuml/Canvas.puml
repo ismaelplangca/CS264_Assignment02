@@ -1,0 +1,17 @@
+@startuml
+class Canvas {
+    + Canvas()
+    + Canvas(height:string, width:string)
+    + ShapeCount() : int
+    + AddShape(s:Shape) : Canvas
+    + GetShape(index:int) : Shape
+    + ReplaceShape(index:int, s:Shape) : bool
+    + SwapShape(i1:int, i2:int) : void
+    + RemoveShape(index:int) : void
+    + GroupShapes(shapeIndexes:int[]) : void
+    + UngroupShapes(index:int) : void
+    + Contents() : string
+    + ToSvgString() : string
+    + ExportToSvg(filename:string) : void
+}
+@enduml

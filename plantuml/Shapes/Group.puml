@@ -1,0 +1,10 @@
+@startuml
+class Group {
+    + Group(list:List<Shape>)
+    + <<override>> Edit(input:string) : void
+    + GetShapes() : List<Shape>
+    + <<override>> ToString() : string
+    + <<override>> ToSvgString() : string
+}
+Shape <|-- Group
+@enduml
