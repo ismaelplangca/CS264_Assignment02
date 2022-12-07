@@ -53,13 +53,13 @@ public class Canvas
     public void GroupShapes(int[] shapeIndexes)
     {
         var group = new List<Shape>();
-        var array = list.ToArray();
+        var arr = list.ToArray();
         foreach(var i in shapeIndexes)
         {
             group.Add(list[i]);
-            array[i] = null!;
+            arr[i] = null!;
         }
-        list = array.Where(x => x is not null).ToList();
+        list = arr.Where(a => a is not null).ToList();
         list.Add(new Group(group) );
     }
     public void UngroupShapes(int index)

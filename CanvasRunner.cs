@@ -55,7 +55,7 @@ public sealed class CanvasRunner
                 case "Y" : canvas = new();
                     break;
                 case "n" :
-                case "N" : 
+                case "N" :
                     Console.WriteLine("Enter SVG Height And Width:\n[height] [width]");
                     var input = Console.ReadLine()!.Split(" ");
                     canvas = new(input[0],input[1]);
@@ -93,7 +93,9 @@ public sealed class CanvasRunner
                         break;
                     case "style" : EditStyle(command[1]);
                         break;
-                    case "delete" : DeleteShape(command[1]);
+                    case "delete" :
+                        canvas.RemoveShape(int.Parse(command[1]) );
+                        Console.WriteLine("Shape deleted!");
                         break;
                     case "transform" : EditTransform(command[1]);
                         break;
@@ -103,7 +105,7 @@ public sealed class CanvasRunner
                         break;
                     case "ungroup" : canvas.UngroupShapes(int.Parse(command[1]) );
                         break;
-                    case "rect" :
+                    case "rectangle" :
                     case "circle" :
                     case "ellipse" :
                     case "line" :
@@ -116,11 +118,6 @@ public sealed class CanvasRunner
                 }
             } catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
-    }
-    static void DeleteShape(string input)
-    {
-        canvas.RemoveShape(int.Parse(input) );
-        Console.WriteLine("Shape deleted!");
     }
     static void EditShape(string input)
     {

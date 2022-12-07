@@ -8,7 +8,7 @@ class Canvas {
     + ReplaceShape(index:int, s:Shape) : bool
     + SwapShape(i1:int, i2:int) : void
     + RemoveShape(index:int) : void
-    + GroupShapes(shapeIndexes:int[]) : void
+    + GroupShapes(shapeIndexes:int[]) : void1
     + UngroupShapes(index:int) : void
     + Contents() : string
     + ToSvgString() : string
