@@ -2,7 +2,7 @@ using System.Text;
 public class Style
 {
     private Style() {}
-    private static Style instance;
+    private static Style instance = null!;
     public static Style GetInstance()
     {
         if(instance == null)
@@ -14,9 +14,9 @@ public class Style
 
     private Dictionary<string,string> styles = new()
     {
-            {"fill",""},
-            {"stroke",""},
-            {"stroke-width",""}
+        {"fill",""},
+        {"stroke",""},
+        {"stroke-width",""}
     };
 
     public void EditProperty(string key, string value)
