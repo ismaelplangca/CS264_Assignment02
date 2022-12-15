@@ -1,14 +1,24 @@
 using System.Text;
 public class Style
 {
-    private Dictionary<string,string> styles = new() 
+    private Style() {}
+    private static Style instance;
+    public static Style GetInstance()
     {
-        // Default styles
-        {"fill",""},
-        {"stroke",""},
-        {"stroke-width",""}
+        if(instance == null)
+        {
+            instance = new Style();
+        }
+        return instance;
+    }
+
+    private Dictionary<string,string> styles = new()
+    {
+            {"fill",""},
+            {"stroke",""},
+            {"stroke-width",""}
     };
-    public Style() {}
+
     public void EditProperty(string key, string value)
     {
         styles[key] = value;
