@@ -2,11 +2,51 @@
 public sealed class CanvasRunner
 {
     private static Canvas canvas = null!;
+    private static String commands =
+        "Commands       :\n" +
+        "Exit           : exit\n" +
+        "Help           : help\n" +
+        "List Shapes    : list (shows shape indexes)\n" +
+        "Export SVG     : export [optional_name.svg]\n" +
+        "Preview SVG    : preview\n" +
+        "Edit Shape*    : edit [shape index]\n" +
+        "Edit Style     : style [shape index]\n" +
+        "Delete Shape   : delete [shape index]\n" +
+        "Transform Shape: transform [shape index]\n" +
+        "Change Z-Index : move [shape index] [shape index]\n" +
+        "Group Shapes** : group [shape index] [shape index] [...]\n" +
+        "Ungroup Shapes : ungroup [group index]\n" +
+        "Syntax         : [shape] [variable1] [variable2] [variableN]\n" +
+        "Examples       : rect 10 10 5 5\n" +
+        "               : polyline 1,1 2,2 3,3\n" +
+        "               : path M150 0 L75 200 L225 200 Z\n" +
+        "Rectangle      : rect [X] [Y] [Height] [Width]\n" +
+        "Circle         : circle [Cx] [Cy] [Radius]\n" +
+        "Ellipse        : ellipse [Cx] [Cy] [Rx] [Ry]\n" +
+        "Line           : line [X1] [Y1] [X2] [Y2]\n" +
+        "Polyline       : polyline [X1,Y1] [X2,Y2] [X..,Y..] [XN,YN]\n" +
+        "Polygon        : polygon [X1,Y2] [X2,Y2] [X..,Y..] [XN,YN]\n" +
+        "Path           : path [Path Commands]\n" +
+        "*ONLY ENTER SHAPE VARIABLES WHEN EDITING\n" +
+        "**SHAPE INDEX ORDER DETERMINES GROUP ORDER\n" +
+        "**SHAPES CANNOT BE EDITED WHILST IN GROUPS\n";
+    private static String styleCommands =
+        "Edit Commands   :\n" +
+        "Exit Editing    : exit\n" +
+        "Help            : help\n" +
+        "Add Property    : [property]\n" +
+        "Remove Property : remove [property]\n" +
+        "Edit Property   : [property] [value]";
+    private static String editCommands =
+        "Edit Commands  :\n" +
+        "Exit Editing   : exit\n" +
+        "Help           : help\n" +
+        "Edit Transform : [transform] [value]";
     public static void run()
     {
         bool run = true;
-        Console.WriteLine("CS264 Assignment 2\n20466014");
-        Console.WriteLine("Use Default SVG Size [Yy/Nn]");
+        var sf = new ShapeFactory();
+        Console.WriteLine("CS264 Assignment 2\n20466014\nUse Default SVG Size [Yy/Nn]");
         while(canvas == null)
         {
             switch(Console.ReadLine() )
@@ -15,7 +55,7 @@ public sealed class CanvasRunner
                 case "Y" : canvas = new();
                     break;
                 case "n" :
-                case "N" : 
+                case "N" :
                     Console.WriteLine("Enter SVG Height And Width:\n[height] [width]");
                     var input = Console.ReadLine()!.Split(" ");
                     canvas = new(input[0],input[1]);
@@ -24,36 +64,7 @@ public sealed class CanvasRunner
                     break;
             }
         }
-        Console.WriteLine();
-        var commands =
-            "Commands       :\n"
-            + "Exit           : exit\n"
-            + "Help           : help\n"
-            + "List Shapes    : list (shows shape indexes)\n"
-            + "Export SVG     : export [optional_name.svg]\n"
-            + "Preview SVG    : preview\n"
-            + "Edit Shape*    : edit [shape index]\n"
-            + "Edit Style     : style [shape index]\n"
-            + "Delete Shape   : delete [shape index]\n"
-            + "Transform Shape: transform [shape index]\n"
-            + "Change Z-Index : move [shape index] [top|bottom|shape index]\n"
-            + "Group Shapes** : group [shape index] [shape index] [...]\n"
-            + "Ungroup Shapes : ungroup [group index]\n"
-            + "Syntax         : [shape] [variable1] [variable2] [variableN]\n"
-            + "Examples       : rect 10 10 5 5\n"
-            + "               : polyline 1,1 2,2 3,3\n"
-            + "               : path M150 0 L75 200 L225 200 Z\n"
-            + "Rectangle      : rect [X] [Y] [Height] [Width]\n"
-            + "Circle         : circle [Cx] [Cy] [Radius]\n"
-            + "Ellipse        : ellipse [Cx] [Cy] [Rx] [Ry]\n"
-            + "Line           : line [X1] [Y1] [X2] [Y2]\n"
-            + "Polyline       : polyline [X1,Y1] [X2,Y2] [X..,Y..] [XN,YN]\n"
-            + "Polygon        : polygon [X1,Y2] [X2,Y2] [X..,Y..] [XN,YN]\n"
-            + "Path           : path [Path Commands]\n"
-            + "*ONLY ENTER SHAPE VARIABLES WHEN EDITING\n"
-            + "**SHAPE INDEX ORDER DETERMINES GROUP ORDER\n"
-            + "**SHAPES CANNOT BE EDITED WHILST IN GROUPS\n";
-        Console.WriteLine(commands);
+        Console.WriteLine("\n" + commands);
 
         Console.WriteLine("Start Drawing!");
         while(run)
@@ -82,47 +93,31 @@ public sealed class CanvasRunner
                         break;
                     case "style" : EditStyle(command[1]);
                         break;
-                    case "delete" : DeleteShape(command[1]);
+                    case "delete" :
+                        canvas.RemoveShape(int.Parse(command[1]) );
+                        Console.WriteLine("Shape deleted!");
                         break;
                     case "transform" : EditTransform(command[1]);
                         break;
-                    case "move" : MoveShape(command[1],command[2]);
+                    case "move" : canvas.SwapShape(int.Parse(command[1]), int.Parse(command[2]) );
                         break;
                     case "group" : canvas.GroupShapes(command.Skip(1).Select(x => int.Parse(x) ).ToArray() );
                         break;
                     case "ungroup" : canvas.UngroupShapes(int.Parse(command[1]) );
                         break;
-                    case "rect" : canvas.AddShape(new Rectangle(command[1],command[2],command[3],command[4]) );
-                        break;
-                    case "circle" : canvas.AddShape(new Circle(command[1],command[2],command[3]) );
-                        break;
-                    case "ellipse" : canvas.AddShape(new Ellipse(command[1],command[2],command[3],command[4]) );
-                        break;
-                    case "line" : canvas.AddShape(new Line(command[1],command[2],command[3],command[4]) );
-                        break;
-                    case "polyline" : canvas.AddShape(new Polyline(command) );
-                        break;
-                    case "polygon" : canvas.AddShape(new Polygon(command) );
-                        break;
-                    case "path" : canvas.AddShape(new Path(command.Skip(1).Aggregate((x,y) => x + " " + y) ) );
-                        break;
-                    case "text" : 
-                        canvas.AddShape(
-                            new Text(command[1], command[2],
-                                command.Skip(3).Aggregate((x,y) => x + " " + y)
-                            )
-                        );
+                    case "rectangle" :
+                    case "circle" :
+                    case "ellipse" :
+                    case "line" :
+                    case "polyline" :
+                    case "polygon" :
+                    case "path" : canvas.AddShape(sf.CreateShape(command) );
                         break;
                     default : Console.WriteLine("Invalid Command!");
                         break;
                 }
             } catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
-    }
-    static void DeleteShape(string input)
-    {
-        canvas.RemoveShape(int.Parse(input) );
-        Console.WriteLine("Shape deleted!");
     }
     static void EditShape(string input)
     {
@@ -140,29 +135,21 @@ public sealed class CanvasRunner
     }
     static void EditStyle(string input)
     {
-        bool editrun = true;
+        bool run = true;
         var shape = canvas.GetShape(int.Parse(input) );
         Console.WriteLine("\nEditing Style of " + shape);
         Console.WriteLine("\nCurrent Styles:");
         Console.WriteLine(shape.style.ShowStyles() + "\n");
-
-        var editCommands = 
-            "Edit Commands   :\n"
-            + "Exit Editing    : exit\n"
-            + "Help            : help\n"
-            + "Add Property    : [property]\n"
-            + "Remove Property : remove [property]\n"
-            + "Edit Property   : [property] [value]";
-        Console.WriteLine(editCommands);
-        while(editrun)
+        Console.WriteLine(styleCommands);
+        while(run)
         {
             Console.WriteLine("\nEnter Edit Command:");
             var command = Console.ReadLine()!.Split(" ");
             switch(command[0])
             {
-                case "exit" : editrun = false;
+                case "exit" : run = false;
                     break;
-                case "help" : Console.WriteLine(editCommands);
+                case "help" : Console.WriteLine(styleCommands);
                     break;
                 case "remove" :
                     try { shape.style.RemoveStyle(command[0]);
@@ -194,50 +181,27 @@ public sealed class CanvasRunner
         Console.WriteLine("\nEditing Transforms of " + shape);
         Console.WriteLine("\nCurrent Translations:");
         Console.WriteLine(shape.transforms.ShowTransforms() + "\n");
-
-        var editCommands = 
-            "Edit Commands  :\n"
-            + "Exit Editing   : exit\n"
-            + "Help           : help\n"
-            + "Edit Transform : [transform] [value]";
         Console.WriteLine(editCommands);
         while(run)
         {
             Console.WriteLine("\nEnter Edit Command:");
-            try {
-                var command = Console.ReadLine()!.Split(" ");
-                switch(command[0])
-                {
-                    case "exit" : run = false;
-                        break;
-                    case "help" : Console.WriteLine(editCommands);
-                        break;
-                    default :
-                        shape.transforms
-                        .EditTranslation(
-                            command[0],
-                            command.Skip(1).Aggregate((x, y) => x + " " + y)
-                        );
-                        Console.WriteLine("\n" + shape.transforms.ShowTransforms() );
-                        break;
-                }
-            } catch(Exception ex) { Console.WriteLine(ex.Message); }
+            var command = Console.ReadLine()!.Split(" ");
+            switch(command[0])
+            {
+                case "exit" : run = false;
+                    break;
+                case "help" : Console.WriteLine(editCommands);
+                    break;
+                default :
+                    shape.transforms
+                    .EditTranslation(
+                        command[0],
+                        command.Skip(1).Aggregate((x, y) => x + " " + y)
+                    );
+                    Console.WriteLine("\n" + shape.transforms.ShowTransforms() );
+                    break;
+            }
         }
         Console.WriteLine("\nExiting Style Editing");
-    }
-    static void MoveShape(string s1Index, string s2Index)
-    {
-        int i1 = int.Parse(s1Index);
-        int i2 = 0;
-        switch(s2Index)
-        {
-            case "top" : canvas.SwapShape(i1, 0);
-                return;
-            case "bottom" : canvas.SwapShape(i1, canvas.ShapeCount() - 1);
-                return;
-            default : i2 = int.Parse(s2Index);
-                break;
-        }
-        canvas.SwapShape(i1,i2);
     }
 }

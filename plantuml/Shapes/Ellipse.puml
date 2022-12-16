@@ -1,0 +1,9 @@
+@startuml
+class Ellipse {
+    + Ellipse(Cx:string, Cy:string, Rx:string, Ry:string)
+    + <<override>> Edit(input:string) : void
+    + <<override>> ToString() : string
+    + <<override>> ToSvgString() : string
+}
+Shape <|-- Ellipse
+@enduml

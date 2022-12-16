@@ -1,14 +1,24 @@
 using System.Text;
 public class Style
 {
-    private Dictionary<string,string> styles = new() 
+    private Style() {}
+    private static Style instance = null!;
+    public static Style GetInstance()
     {
-        // Default styles
+        if(instance == null)
+        {
+            instance = new Style();
+        }
+        return instance;
+    }
+
+    private Dictionary<string,string> styles = new()
+    {
         {"fill",""},
         {"stroke",""},
         {"stroke-width",""}
     };
-    public Style() {}
+
     public void EditProperty(string key, string value)
     {
         styles[key] = value;
@@ -19,26 +29,22 @@ public class Style
     }
     public string ShowStyles()
     {
-        var sb = new StringBuilder();
-        foreach(var key in styles.Keys)
-            sb.Append(key).Append(":").Append(styles[key]).Append(";\n");
-        sb.Length--;
-        return sb.ToString();
+        return 
+            String.Join(
+                Environment.NewLine,
+                styles.Select(kv => kv.Key + ":" + kv.Value + ";")
+            );
     }
     public override string ToString()
     {
         var sb = new StringBuilder();
-        foreach(var key in styles.Keys)
-            if(styles[key].Length != 0 )
-                sb.Append(key).Append(":").Append(styles[key]).Append(";");
+        foreach(var kv in styles)
+            if(kv.Value.Length != 0 )
+                sb.Append(kv.Key + ":" + kv.Value + ";");
         return sb.ToString();
     }
     public string ToSvgString()
     {
-        var sb = new StringBuilder();
-        sb.Append("style=\"");
-        sb.Append(this.ToString() );
-        sb.Append("\"");
-        return sb.ToString();
+        return "style=\"" + this.ToString() + "\"";
     }
 }

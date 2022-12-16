@@ -1,0 +1,9 @@
+@startuml
+class Circle {
+    + Circle(Cx:string, Cy:string, Radius:string)
+    + <<override>> Edit(input:string) : void
+    + <<override>> ToString() : string
+    + <<override>> ToSvgString() : string
+}
+Shape <|-- Circle
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class CanvasRunner <<sealed>> {
+    + {static} run() : void
+    {static} EditShape(input:string) : void
+    {static} EditStyle(input:string) : void
+    {static} EditTransform(input:string) : void
+}
+@enduml

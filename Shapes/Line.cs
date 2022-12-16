@@ -29,8 +29,8 @@ public class Line : Shape
             + ",Y1=" + Y1
             + ",X2=" + X2
             + ",Y2=" + Y2
-            + ",Style=" + style.ToString()
-            + ",Transforms=" + transforms.ToString()
+            + ",Style=" + style
+            + ",Transforms=" + transforms
             + ")";
     }
     public override string ToSvgString()

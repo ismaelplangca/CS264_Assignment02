@@ -15,7 +15,7 @@ public class Group : Shape
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.Append("Group(Styles=" + style.ToString() + " Transforms=" + transforms.ToString() + "\n");
+        sb.Append("Group(Styles=" + style + " Transforms=" + transforms + "\n");
         for(int i = 0; i < list.Count; i++)
             sb.Append("\t" + i + "," + list[i] + "\n");
         sb.Append(")");

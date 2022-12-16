@@ -1,0 +1,11 @@
+@startuml
+class Polygon {
+    + Polygon()
+    + Polygon(array:string[])
+    + AddPoint(x:string, y:string) : Polygon
+    + <<override>> Edit(input:string) : void
+    + <<override>> ToString() : string
+    + <<override>> ToSvgString() : string
+}
+Shape <|-- Polygon
+@enduml

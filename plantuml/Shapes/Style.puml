@@ -1,0 +1,10 @@
+@startuml
+class Style {
+    + {static} GetInstance() : Style
+    + EditProperty(key:string, value:string) : void
+    + RemoveStyle(key:string) : void
+    + ShowStyles() : string
+    + <<override>> ToString() : string
+    + ToSvgString() : string
+}
+@enduml

@@ -39,23 +39,16 @@ public class Polygon : Shape
     }
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.Append("Polygon(Points=");
-        foreach(var p in list)
-            sb.Append("(" + p + "),");
-        sb.Append("Style=" + style.ToString() )
-        .Append(",Transforms=" + transforms.ToString()  + ")");
-        return sb.ToString();
+        return 
+            "Polygon(Points=" +
+            String.Join(",", list.Select(a => "(" + a + ")") ) +
+            ",Style=" + style + ",Transforms=" + transforms + ")"; 
     }
     public override string ToSvgString()
     {
-        var sb = new StringBuilder();
-        sb.Append("<polygon points=\"");
-        foreach(var p in list)
-            sb.Append(p + " ");
-        sb.Length--;
-        sb.Append("\" " + style.ToSvgString() )
-        .Append(" " + transforms.ToSvgString()  + "/>");
-        return sb.ToString();
+        return
+            "<polygon points=\"" +
+            String.Join(" ", list) + "\" "
+            + style.ToSvgString() + " " + transforms.ToSvgString() + "/>";
     }
 }

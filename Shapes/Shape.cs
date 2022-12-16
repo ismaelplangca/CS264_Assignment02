@@ -4,7 +4,7 @@ public abstract class Shape
     public Translate transforms { get; }
     public Shape()
     {
-        style = new();
+        style = Style.GetInstance();
         transforms = new();
     }
     // These methods are abstract in order for them 

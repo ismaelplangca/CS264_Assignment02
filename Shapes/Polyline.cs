@@ -1,4 +1,3 @@
-using System.Text;
 using System.Text.RegularExpressions;
 public class Polyline : Shape {
     private List<Point> list;
@@ -11,7 +10,7 @@ public class Polyline : Shape {
     : base()
     {
         list = new();
-        var regex = new Regex("[0-9]+,[0-9]");
+        var regex = new Regex("[0-9]+,[0-9]+");
         for(int i = 1; i < array.Length; i++)
         {
             // 1,1 2,2 3,3
@@ -38,23 +37,16 @@ public class Polyline : Shape {
     }
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.Append("Polyline(Points=");
-        foreach(var p in list)
-            sb.Append("(" + p + "),");
-        sb.Append("Style=" + style.ToString() )
-        .Append(",Transforms=" + transforms.ToString()  + ")");
-        return sb.ToString();
+        return 
+            "Polyline(Points=" + 
+            String.Join(",", list.Select(a => "(" + a + ")") ) +
+            ",Style=" + style + ",Transforms=" + transforms + ")"; 
     }
     public override string ToSvgString()
     {
-        var sb = new StringBuilder();
-        sb.Append("<polyline points=\"");
-        foreach(var p in list)
-            sb.Append(p + " ");
-        sb.Length--;
-        sb.Append("\" " + style.ToSvgString() )
-        .Append(" " + transforms.ToSvgString()  + "/>");
-        return sb.ToString();
+        return
+            "<polyline points=\"" +
+            String.Join(" ", list) + "\" "
+            + style.ToSvgString() + " " + transforms.ToSvgString() + "/>";
     }
 }

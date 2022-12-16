@@ -26,8 +26,8 @@ public class Ellipse : Shape
             + ",Cy=" + Cy
             + ",Rx=" + Rx
             + ",Ry=" + Ry
-            + ",Style=" + style.ToString()
-            + ",Transforms=" + transforms.ToString()
+            + ",Style=" + style
+            + ",Transforms=" + transforms
             + ")";
     }
     public override string ToSvgString()

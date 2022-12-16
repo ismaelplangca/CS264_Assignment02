@@ -1,0 +1,8 @@
+@startuml
+class Point <<sealed>> {
+    X : string <<get>> <<set>>
+    Y : string <<get>> <<set>>
+    + Point(X:string, Y:string)
+    + <<override>> ToString() : string
+}
+@enduml

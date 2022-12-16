@@ -1,0 +1,11 @@
+@startuml
+class Polyline {
+    + Polyline()
+    + Polyline(array:string[])
+    + AddPoint(x:string, y:string) : Polyline
+    + <<override>> Edit(input:string) : void
+    + <<override>> ToString() : string
+    + <<override>> ToSvgString() : string
+}
+Shape <|-- Polyline
+@enduml

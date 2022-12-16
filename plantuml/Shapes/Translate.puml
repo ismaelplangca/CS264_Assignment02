@@ -1,0 +1,9 @@
+@startuml
+class Translate {
+    + Translate()
+    + EditTranslation(key:string, value:string) : void
+    + ShowTransforms() : string
+    + <<override>> ToString() : string
+    + ToSvgString() : string
+}
+@enduml
