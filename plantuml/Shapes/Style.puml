@@ -1,6 +1,6 @@
 @startuml
 class Style {
-    + Style()
+    + {static} GetInstance() : Style
     + EditProperty(key:string, value:string) : void
     + RemoveStyle(key:string) : void
     + ShowStyles() : string
